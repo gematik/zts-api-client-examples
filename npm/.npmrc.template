@@ -1,0 +1,3 @@
+registry=https://terminologien.bfarm.de/packages/
+//terminologien.bfarm.de/packages/:_authToken={{DOWNLOAD_TOKEN}}
+cache=./.npm_cache
