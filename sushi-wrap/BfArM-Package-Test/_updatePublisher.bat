@@ -1,4 +1,4 @@
-REM Copyright [2025], gematik GmbH
+REM Copyright (Change Date see Readme), gematik GmbH
  
 REM Licensed under the Apache License, Version 2.0 (the "License");
 REM you may not use this file except in compliance with the License.
