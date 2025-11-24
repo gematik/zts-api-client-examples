@@ -28,9 +28,9 @@ The following example clients/configurations are currently provided:
 For more in-depth documentation, please refer to the referenced README files of the individual tools.
 
 ## License
-Copyright [2025] gematik GmbH
+Copyright 2025 gematik GmbH
  
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+Apache License, Version 2.0
 
 See [LICENSE](./LICENSE) for the specific language governing permissions and limitations under the License.
 
