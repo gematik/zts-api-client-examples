@@ -131,6 +131,8 @@ curl --user-agent "{$USER_AGENT}" -X GET "{$CATALOG_API_ENDPOINT}" -H "Accept: a
 
 # Iterate over all entries in the catalog
 jq -r '.[].name' $CATALOG_METADATA_FILE | while read name; do
+  # remove \r if relevant after reading the value
+  name=$(printf '%s' "$name" | tr -d '\r')
   
   # Only if the INCLUDE and EXCLUDE criteria are met, content will be downloaded
   if [[ "$INCLUDE_PACKAGES" == *"$name"* || "$INCLUDE_PACKAGES" == "ALL" ]] && [[ ! "$EXCLUDE_PACKAGES" == *"$name"* ]]; then
