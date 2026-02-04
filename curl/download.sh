@@ -148,6 +148,9 @@ jq -r '.[].name' $CATALOG_METADATA_FILE | while read name; do
 	  	# Extract the latest version from the file using "jq"
 	  	PACKAGE_VERSION_LATEST=$(jq -r '."dist-tags".latest' $PACKAGE_METADATA_FILE)
 
+		# Remove trailing \r
+		PACKAGE_VERSION_LATEST=$(printf '%s' "$PACKAGE_VERSION_LATEST" | tr -d '\r')
+		
 		# Change to the output directory
 	  	cd $OUTPUT_DIR
 
@@ -169,7 +172,9 @@ jq -r '.[].name' $CATALOG_METADATA_FILE | while read name; do
 	  else
 	  	# We download all available versions of the package
 	  	jq -r '.versions | keys[]' $PACKAGE_METADATA_FILE | while read version; do
-
+			# Remove trailing \r
+			version=$(printf '%s' "$version" | tr -d '\r')
+			
 	  		# Change to the output directory
 	  		cd $OUTPUT_DIR
 
