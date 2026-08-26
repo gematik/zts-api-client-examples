@@ -24,7 +24,8 @@
 
 # List of accepted download conditions, e.g. 'bfarm.terminologien.abc,bfarm.terminologien.xyz'
 # The list of accepted download conditions can be viewed on the website (https://terminologien.bfarm.de).
-ACCEPTED_DOWNLOAD_CONDITIONS=bfarm.terminologien.abc,bfarm.terminologien.xyz
+# Can be overridden via the ACCEPTED_DOWNLOAD_CONDITIONS environment variable.
+ACCEPTED_DOWNLOAD_CONDITIONS="${ACCEPTED_DOWNLOAD_CONDITIONS:-bfarm.terminologien.abc,bfarm.terminologien.xyz}"
 
 # The value to be set in the User-Agent header
 USER_AGENT=example-zts-client/1.0
@@ -42,6 +43,10 @@ CURRENT_DIR=$(pwd)
 
 # This and that
 DEBUG=false
+
+# Command used to invoke SUSHI. Defaults to the global "sushi" binary; override
+# for setups without one on PATH, e.g. SUSHI_COMMAND="npx fsh-sushi . -s".
+SUSHI_COMMAND="${SUSHI_COMMAND:-sushi .}"
 
 # ====================================================================================================================================
 # Helper functions
@@ -175,6 +180,8 @@ done
 
 cd $OUTPUT_DIR
 
+mkdir -p "$FHIR_HOME/packages"
+
 for file in *.tar.gz; do
 
   # Extract package name and package version
@@ -207,6 +214,6 @@ rm $CATALOG_METADATA_FILE
 # Call sushi
 # ====================================================================================================================================
 
-sushi .
+${SUSHI_COMMAND}
 
 echo "So Long, and Thanks for All the Fsh"
